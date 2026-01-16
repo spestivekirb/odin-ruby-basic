@@ -5,3 +5,31 @@
 # If number in range 97 to 122, subtract 97, add shift, mod by 26, add 97.
 # Convert all ints back to char
 # Join into string for return 
+
+def caesar_cipher(string, shift)
+  char_array = string.split("").map(&:ord)
+  shift_array = char_array.map do |value|
+    if (value >= 65 && value <= 90) 
+      value -= 65
+      value += shift
+      value %= 26
+      value += 65
+
+    elsif (value >= 97 && value <= 122)
+      value -= 97
+      value += shift
+      value %= 26
+      value += 97
+
+    else
+      value
+
+    end
+  end
+
+  shift_array.map(&:chr).join
+end
+
+
+puts caesar_cipher("What a String!", 5)
+puts caesar_cipher("What a String!", 295)
