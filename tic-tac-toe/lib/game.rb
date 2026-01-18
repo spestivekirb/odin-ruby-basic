@@ -16,7 +16,7 @@ class Game
   def play_game
     loop do
       take_turn
-      result = @Board.declare_end
+      result = @board.declare_end
       if result.is_a?(Player)
         return "The winner is: #{result.name}!"
       elsif result == 'Tie'
@@ -38,6 +38,7 @@ class Game
       puts 'Please enter a valid cell (1-9) that is not already occupied.'
     end
     @board.place_mark(cur_player, location)
+    @turn += 1
   end
 
   def player_move

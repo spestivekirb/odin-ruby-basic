@@ -28,7 +28,7 @@ class Board # rubocop:disable Style/Documentation
   def display_board
     puts '----------'
     @board.each_with_index do |row, index|
-      puts "#{@board[row].join(' | ')}}"
+      puts row.join(' | ')
       puts '----------' unless index == 2
     end
   end
