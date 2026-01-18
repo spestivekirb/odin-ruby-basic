@@ -25,6 +25,14 @@ class Board # rubocop:disable Style/Documentation
     @board[row][col] = marker
   end
 
+  def display_board
+    puts '----------'
+    @board.each_with_index do |row, index|
+      puts "#{@board[row].join(' | ')}}"
+      puts '----------' unless index == 2
+    end
+  end
+
   def declare_end
     # Check Row and Columns
     3.times do |index|
