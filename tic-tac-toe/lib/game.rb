@@ -9,7 +9,7 @@ class Game
     puts "What is Player 2's (O) Name?"
     name2 = gets
     @player2 = Player.new(name2.chomp)
-    @board = Board.new(@player_1, @player_2)
+    @board = Board.new(@player1, @player2)
     @turn = 0
   end
 

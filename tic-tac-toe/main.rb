@@ -4,7 +4,7 @@ loop do
   response = gets.chomp
   if response.downcase == 'yes'
     game = Game.new
-    game.play_game
+    puts game.play_game
   elsif response.downcase == 'no'
     break
   else
