@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Board
   attr_reader :solution
 
@@ -34,6 +36,24 @@ class Board
   end
 
   def display(guess, result)
-    print "#{guess}#{result}\n"
+    print "#{guess.map do |num|
+      color(num)
+    end.join}. Exact: #{result[0].to_s.colorize(:green)}, Near: #{result[1].to_s.colorize(:yellow)}.\n"
+  end
+
+  private
+
+  def color(number)
+    colors = {
+      '1' => :red,
+      '2' => :blue,
+      '3' => :yellow,
+      '4' => :green,
+      '5' => :cyan,
+      '6' => :magenta
+    }
+    bg_color = colors[number]
+    text_color = number == '3' ? :black : :white
+    " #{number} ".colorize(color: text_color, background: bg_color)
   end
 end
