@@ -1,0 +1,3 @@
+require_relative Board
+require_relative Computer
+require_relative Player
