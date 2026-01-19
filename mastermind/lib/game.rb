@@ -18,7 +18,7 @@ class Game
     @complete = false
   end
 
-  def play_round_human
+  def play_round
     puts "Turn: #{@turn}"
     guess = @guesser.guess_code
     # print "Guess: #{guess}"
@@ -27,21 +27,19 @@ class Game
     @complete = true if @board.solved?(result)
     # print result
     @turn += 1
-  end
-
-  def play_round_computer
+    sleep(5) if @guesser.is_a?(Computer)
   end
 
   def play_game
-    if @guesser = is_a?(Player)
-      play_round_human while @turn < 13 && !@complete
+    if @guesser.is_a?(Player)
+      play_round while @turn < 13 && !@complete
       if @complete
         puts "Congratulations! #{@board.solution} was the code!"
       else
         puts "Too bad. #{@board.solution} was the code!"
       end
     else
-      play_round_computer while @turn < 13 && !@complete
+      play_round while @turn < 13 && !@complete
       if @complete
         puts "You lost! #{@board.solution} was the code!"
       else

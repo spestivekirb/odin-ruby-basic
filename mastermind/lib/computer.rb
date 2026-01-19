@@ -20,11 +20,7 @@ class Computer
   def guess_code
     result = []
     @guess.each do |value|
-      if value
-        result.push[value]
-      else
-        result.push(rand(1..6).to_s)
-      end
+      result.push(value || rand(1..6).to_s)
     end
     memorize(result)
     result
