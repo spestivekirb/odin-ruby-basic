@@ -6,7 +6,7 @@ class Computer
   def create_code
     code = []
     4.times do
-      code.push(rand(1..6))
+      code.push(rand(1..6).to_s)
     end
     code
   end

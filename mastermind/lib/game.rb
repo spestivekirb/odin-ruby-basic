@@ -19,10 +19,11 @@ class Game
 
   def play_round
     puts "Turn: #{@turn}"
-    @board.display
     guess = @guesser.guess_code
-    puts "Guess: #{guess}"
-    puts @board.guess(guess)
+    # print "Guess: #{guess}"
+    result = @board.guess(guess)
+    @board.display(guess, result)
+    # print result
     @turn += 1
   end
 
