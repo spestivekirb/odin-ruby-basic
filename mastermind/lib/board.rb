@@ -1,4 +1,6 @@
 class Board
+  attr_reader :solution
+
   def initialize(solution)
     @solution = solution
     @turn = 1
@@ -26,7 +28,7 @@ class Board
     [exact, near]
   end
 
-  def check_solve(result)
+  def solved?(result)
     @solved = result[0] == 4
     result[0] == 4
   end

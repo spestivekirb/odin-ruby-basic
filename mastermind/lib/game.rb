@@ -15,6 +15,7 @@ class Game
     end
     @board = Board.new(make_code)
     @turn = 1
+    @complete = false
   end
 
   def play_round
@@ -23,12 +24,18 @@ class Game
     # print "Guess: #{guess}"
     result = @board.guess(guess)
     @board.display(guess, result)
+    @complete = true if @board.solved?(result)
     # print result
     @turn += 1
   end
 
   def play_game
-    play_round while @turn < 13
+    play_round while @turn < 13 && !@complete
+    if @complete
+      puts "Congratulations! #{@board.solution} was the code!"
+    else
+      puts "Too bad. #{@board.solution} was the code!"
+    end
   end
 
   private
