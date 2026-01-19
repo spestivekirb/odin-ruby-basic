@@ -7,11 +7,10 @@ class Player
     puts 'Please guess the code (given as a 4-digit number, numbers 1-6)'
     loop do
       guess = gets.chomp.split('')
-      break unless guess.length == 4 || guess.between?('1', '6')
+      return guess if guess.length == 4 && guess.all? { |num| num.between?('1', '6') }
 
       puts 'Invalid input. Enter your answer as xxxx : 1 <= x <= 6'
     end
-    guess
   end
 
   def create_code

@@ -3,8 +3,6 @@ class Computer
     @state = state # 0 if creator, 1 if guesser
   end
 
-  private
-
   def create_code
     code = []
     4.times do
