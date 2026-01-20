@@ -19,6 +19,11 @@ class Game
       display
       guess
     end
+    if @lives.positive?
+      puts "You win! The answer was: #{@solution.join.capitalize}"
+    else
+      puts "You lose! The answer was: #{@solution.join.capitalize}"
+    end
   end
 
   private
@@ -36,6 +41,7 @@ class Game
       @contain_set.delete(letter.downcase)
     else
       @wrong_set.push(letter.downcase)
+      @lives -= 1
     end
   end
 
