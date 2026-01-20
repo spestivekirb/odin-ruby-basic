@@ -1,0 +1,22 @@
+--- !ruby/object:Game
+used_set:
+- a
+- b
+- p
+wrong_set:
+- b
+- p
+solution:
+- m
+- o
+- r
+- g
+- a
+- "n"
+contain_set:
+- m
+- o
+- r
+- g
+- "n"
+lives: 4

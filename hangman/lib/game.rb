@@ -1,17 +1,14 @@
 require_relative 'generator'
+require 'yaml'
 
 class Game
-  def initialize(load)
-    if load
-      puts 'load'
-    else
-      @used_set = []
-      @wrong_set = []
-      gen = Generator.new
-      @solution = gen.generate_word.split('')
-      @contain_set = @solution.uniq
-      @lives = 6
-    end
+  def initialize
+    @used_set = []
+    @wrong_set = []
+    gen = Generator.new
+    @solution = gen.generate_word.split('')
+    @contain_set = @solution.uniq
+    @lives = 6
   end
 
   def play_game
@@ -30,8 +27,9 @@ class Game
 
   def guess
     letter = loop do
-      puts 'Please guess a letter.'
+      puts 'Please guess a letter, or enter "save" to save and exit (will overwrite save).'
       input = gets.chomp
+      save_game if input.downcase == 'save'
       break input if input.length == 1 && input.downcase.between?('a', 'z') && !@used_set.include?(input.downcase)
 
       puts 'Invalid input. Please enter a single, alphabetical letter (a-z), that has not already been guessed.'
@@ -58,5 +56,18 @@ class Game
     end
     puts guess_string
     puts "Incorrect guesses: #{@wrong_set}"
+  end
+
+  def save_game
+    File.open('save.yaml', 'w') do |file|
+      file.write(YAML.dump(self))
+    end
+    puts 'Game saved. Exiting program...'
+    exit
+  end
+
+  def self.load_game
+    save = File.open('save.yaml', 'r')
+    YAML.unsafe_load(save)
   end
 end
